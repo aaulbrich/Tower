@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package towerpack;
-
+import towerpack.towermain;
 import java.util.HashMap;
 
 /**
@@ -20,7 +20,8 @@ public class TowerTester {
         // TODO code application logic here
     	
     	HashMap<String, Boolean> init = new HashMap<String, Boolean>();
-    	towermain Player = new towermain("", 0, init);
+    	towermain Player = new towermain("", 0, init,false);
+    	Player.play();
     
     }
     

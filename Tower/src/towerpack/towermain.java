@@ -14,9 +14,9 @@ public class towermain {
 private static int plocation;
 private static String pname;
 private static HashMap<String, Boolean> pBackpack;
+private static boolean endGame;
 
-
-public towermain(String pname, int plocation, HashMap<String, Boolean> pBackpack) {
+public towermain(String pname, int plocation, HashMap<String, Boolean> pBackpack, boolean endGame) {
 	
 	towermain.pname = pname;
 	pname = JOptionPane.showInputDialog(null, "What is your name?");
@@ -25,9 +25,20 @@ public towermain(String pname, int plocation, HashMap<String, Boolean> pBackpack
 	plocation = 1;
 	towermain.pBackpack = pBackpack;
 	pBackpack = initializeBackpack();
-	
+	towermain.endGame = endGame;
+	endGame = false;
 }
 
+public static void play() {
+	
+	while (endGame == false) {
+		int choice;
+		
+		clocationmessage();
+		choice = clocationquestion();
+		flooractions(choice);
+	}
+}
 public static HashMap<String, Boolean> initializeBackpack() {
 	
 	HashMap<String, Boolean> iBackpack = new HashMap<String, Boolean>();
@@ -101,6 +112,7 @@ public static void flooractions(int choice) {
 		if(choice == 0) {
 			if(pBackpack.get("Front Door Key") == true) {
 				JOptionPane.showMessageDialog(null,"Congratulations, you have opened the front door and escaped! Game Over!");
+				endGame = true;
 			}
 		// Key needed to open front door
 			
