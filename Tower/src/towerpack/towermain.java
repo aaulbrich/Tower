@@ -16,20 +16,16 @@ private static String pname;
 private static HashMap<String, Boolean> pBackpack;
 private static boolean endGame;
 
-public towermain(String pname, int plocation, HashMap<String, Boolean> pBackpack, boolean endGame) {
+public towermain() {
 	
-	towermain.pname = pname;
 	pname = JOptionPane.showInputDialog(null, "What is your name?");
 	JOptionPane.showMessageDialog(null, "Welcome " + pname + " to the Tower Of Terror!");
-	towermain.plocation = plocation;
 	plocation = 1;
-	towermain.pBackpack = pBackpack;
 	pBackpack = initializeBackpack();
-	towermain.endGame = endGame;
 	endGame = false;
 }
 
-public static void play() {
+public void play() {
 	
 	while (endGame == false) {
 		int choice;
@@ -38,8 +34,27 @@ public static void play() {
 		choice = clocationquestion();
 		flooractions(choice);
 	}
+	backpackcontents();
 }
-public static HashMap<String, Boolean> initializeBackpack() {
+
+private static void backpackcontents() {
+	
+	String Backpack = null;
+	
+	for(String key: pBackpack.keySet()) {
+		if(pBackpack.get(key) == true) {
+			if(Backpack == null) {
+				Backpack = key;
+			}
+			else {
+				Backpack = Backpack + " | " + key;
+			}
+		}
+	}
+	JOptionPane.showMessageDialog(null, pname + ", You found: " + Backpack,null,JOptionPane.INFORMATION_MESSAGE);
+}
+
+private static HashMap<String, Boolean> initializeBackpack() {
 	
 	HashMap<String, Boolean> iBackpack = new HashMap<String, Boolean>();
 	
@@ -52,14 +67,14 @@ public static HashMap<String, Boolean> initializeBackpack() {
 	Items[5] = "Soap";
 	Items[6] = "Limited Edition Gundam";
 			
-	for(int x = 0; x <= Items.length; x++) {
+	for(int x = 0; x < Items.length; x++) {
 		iBackpack.put(Items[x], false);
 	}
 	
 	return iBackpack;
 }
 
-private static String receivefloor() {
+private static String receivefloor(int loc) {
 	
 	String[] floor = new String[11];
 	floor[0] = "Basement";
@@ -74,19 +89,19 @@ private static String receivefloor() {
     floor[9] = "Attic";
     floor[10] = "Elevator";
     
-    return floor[plocation];
+    return floor[loc];
 }
 
-public static Object[] elevatorchoices() {
+private static Object[] elevatorchoices() {
 	
-	Object[] floors = new String[10];
-	for(int x = 0; x <= 10; x++) {
-		floors[x] = receivefloor();
+	Object[] floors = new Object[10];
+	for(int x = 0; x < 10; x++) {
+		floors[x] = receivefloor(x);
 	}
 	return floors;
 }
 
-public static void flooractions(int choice) {
+private static void flooractions(int choice) {
 	
 	switch(plocation) {
 	case 0: 
@@ -113,6 +128,9 @@ public static void flooractions(int choice) {
 			if(pBackpack.get("Front Door Key") == true) {
 				JOptionPane.showMessageDialog(null,"Congratulations, you have opened the front door and escaped! Game Over!");
 				endGame = true;
+			}
+			else {
+				JOptionPane.showMessageDialog(null,"The front door is locked...");
 			}
 		// Key needed to open front door
 			
@@ -256,7 +274,7 @@ public static void flooractions(int choice) {
 	}
 }
 
-public static int optionsquestion(Object[] options) {
+private static int optionsquestion(Object[] options) {
 	
 	int n = JOptionPane.showOptionDialog(null,
 		    pname + ", What would you like to do?",
@@ -268,7 +286,7 @@ public static int optionsquestion(Object[] options) {
 	return n;
 }
 
-public static int clocationquestion() {
+private static int clocationquestion() {
 	
 	Object[] options = new Object[4];
 	int choice;
@@ -339,7 +357,7 @@ public static int clocationquestion() {
 	return choice;
 }
 
-public static ImageIcon picture() {
+private static ImageIcon picture() {
 	
 	ImageIcon[] floorpicture = new ImageIcon[11];
 	
@@ -360,8 +378,8 @@ public static ImageIcon picture() {
 	
 }
 
-public static void clocationmessage () {
-	JOptionPane.showMessageDialog(null, pname + ", You are now in " + receivefloor() + ".",null,JOptionPane.INFORMATION_MESSAGE,picture());
+private static void clocationmessage () {
+	JOptionPane.showMessageDialog(null, pname + ", You are now in " + receivefloor(plocation) + ".",null,JOptionPane.INFORMATION_MESSAGE,picture());
 }
 
 }
