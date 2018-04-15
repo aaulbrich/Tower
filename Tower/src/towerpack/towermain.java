@@ -1,5 +1,6 @@
 package towerpack;
 
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -10,12 +11,27 @@ import javax.swing.JOptionPane;
 public class towermain {
 
 
-private static String name; //Player name.
-private static String location0 = "Front Door";//First location selected from door.
-private static String toFrontDoor = "FrontDoor";
-private static boolean elevator;
-private static int location;
+public towermain(String pname, int plocation, HashMap<String, Boolean> pBackpack) {
+	
+	pname = initializename();
+	plocation = 1;
+	pBackpack = initializeBackpack();
+	
+}
 
+public static HashMap<String, Boolean> initializeBackpack() {
+	
+	HashMap<String, Boolean> iBackpack = new HashMap<String, Boolean>();
+	
+	String[] Items = new String[10];
+	
+	for(int x = 0; x < Items.length; x++) {
+		iBackpack.put(Items[x], false);
+	}
+	
+	return iBackpack;
+	
+}
 
 private static String receivefloor(int loc) {
 	
@@ -46,9 +62,9 @@ public static Object[] elevatorchoices() {
 	
 }
 
-public static void flooractions(int choice) {
+public static void flooractions(int choice, int plocation) {
 	
-	switch(location) {
+	switch(plocation) {
 	case 0: 
 		//case for basement
 		if(choice == 0) {
@@ -64,11 +80,11 @@ public static void flooractions(int choice) {
 	case 1:	
 		//case for front door
 		if(choice == 0) {
-			// Key needed to open front door
+		// Key needed to open front door
 			
 		}
 		else if(choice == 1) {
-			//go back to elevator
+		//go back to elevator
 			
 		}
 			break;
@@ -77,7 +93,7 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "They light up by themselves and death shadows appear.");
 		}
 		else if(choice == 1) {
-			//back to elevator
+		//back to elevator
 			JOptionPane.showMessageDialog(null, "");
 		}
 			break;
@@ -90,7 +106,7 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "Glasses and dishes start flying around the room!");
 		}
 		else if(choice == 2) {
-			// go back to elevator
+		// go back to elevator
 			
 		}
 			break;
@@ -103,7 +119,7 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "You see a child outside on a swing.");
 		}
 		else if(choice == 2) {
-			//back to elevator
+		//back to elevator
 			
 		}
 			break;
@@ -116,7 +132,7 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "A ghost flies out and goes right through you. You might have to go to therapy for that.");
 		}
 		else if(choice == 2) {
-			// back to elevator
+		// back to elevator
 			
 		}
 			break;
@@ -129,7 +145,7 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "You rub the lamp and a genie pops out. He begins to sing 'Ocean Man'.");
 		}
 		else if(choice == 2) {
-			// go back to elevator
+		// go back to elevator
 			
 		}
 			break;
@@ -142,7 +158,7 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "You hear someone drop the soap in the shower, but there is no one there...");
 		}
 		else if(choice == 2) {
-			//go back to elevator
+		//go back to elevator
 			
 		}
 			break;
@@ -152,23 +168,23 @@ public static void flooractions(int choice) {
 			JOptionPane.showMessageDialog(null, "You find a limited edition Gundam!");
 		}
 		else if(choice == 1) {
-			//back to elevator
+		//back to elevator
 		}
 			break;
 	case 9:
 		//case for attic
 		if(choice == 0) {
-			//key for front door
+		//key for front door
 			JOptionPane.showMessageDialog(null, "You found another key.");
 		}
 		else if(choice == 1) {
-			//go back to elevator
+		//go back to elevator
 			
 		}
 	}
 }
 
-public static int optionsquestion(Object[] options) {
+public static int optionsquestion(Object[] options, int plocation) {
 	
 	int n = JOptionPane.showOptionDialog(null,
 		    "What would you like to do?",
@@ -181,14 +197,14 @@ public static int optionsquestion(Object[] options) {
 	
 }
 
-public static int clocationquestion() {
+public static int clocationquestion(int plocation) {
 	
 	Object[] options = new Object[4];
 	int choice;
 	int numoptions = 0;
 	options[3] = "Go back to Elevator";
 	
-	switch (location) {
+	switch (plocation) {
 	case 0: 
 		options[0] = "Explore Chest";
 		options[1] = "Explore Boiler Room";
@@ -227,7 +243,7 @@ public static int clocationquestion() {
 		break;
 	case 10:
 		options = elevatorchoices();
-		choice = optionsquestion(options);
+		choice = optionsquestion(options, plocation);
 		return choice;
 	}
 	
@@ -248,7 +264,7 @@ public static int clocationquestion() {
 		roptions[numoptions - 1] = options[3];
 	}
 	
-	choice = optionsquestion(roptions);
+	choice = optionsquestion(roptions, plocation);
 	return choice;
 }
 
@@ -273,18 +289,18 @@ public static ImageIcon picture(int x) {
 	
 }
 
-public static void intro() {
+public static String initializename() {
 	
-	location = 1;
 	  //Asking for user's name and welcoming the user.
-    name = JOptionPane.showInputDialog(null, "What is your name?");
-    JOptionPane.showMessageDialog(null, "Welcome " + name + " to the Tower Of Terror!");
+    String pname = JOptionPane.showInputDialog(null, "What is your name?");
+    JOptionPane.showMessageDialog(null, "Welcome " + pname + " to the Tower Of Terror!");
+    return pname;
 	
 }
 
-public static void currentlocation(int x) {
+public static void currentlocation(int x, int plocation) {
 	
-	switch (location) {
+	switch (plocation) {
 	
 	case 0: if()
 	
@@ -292,9 +308,9 @@ public static void currentlocation(int x) {
 	
 }
 
-public static void clocationmessage ( ) {
+public static void clocationmessage (int plocation) {
 	
-	JOptionPane.showMessageDialog(null, "You are now in " + receivefloor(location) + ".",null,JOptionPane.INFORMATION_MESSAGE,picture(location));
+	JOptionPane.showMessageDialog(null, "You are now in " + receivefloor(plocation) + ".",null,JOptionPane.INFORMATION_MESSAGE,picture(location));
 	
 }
 
