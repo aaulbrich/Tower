@@ -101,6 +101,9 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 	case 1:	
 		//case for front door
 		if(choice == 0) {
+			if(pbackpack.get("Front Door Key") == true) {
+				JOptionPane.showMessageDialog(null,"Congratulations, you have opened the front door and escaped! Game Over!");
+			}
 		// Key needed to open front door
 			
 		}
