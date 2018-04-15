@@ -23,9 +23,16 @@ public static HashMap<String, Boolean> initializeBackpack() {
 	
 	HashMap<String, Boolean> iBackpack = new HashMap<String, Boolean>();
 	
-	String[] Items = new String[10];
-	
-	for(int x = 0; x < Items.length; x++) {
+	String[] Items = new String[7];
+	Items[0] = "Attic Key";
+	Items[1] = "Front Door Key";
+	Items[2] = "Soul Food";
+	Items[3] = "Cursed Hope Diamond";
+	Items[4] = "Intricate Oil Lamp";
+	Items[5] = "Soap";
+	Items[6] = "Limited Edition Gundam";
+			
+	for(int x = 0; x <= Items.length; x++) {
 		iBackpack.put(Items[x], false);
 	}
 	
@@ -68,13 +75,21 @@ public static Object[] elevatorchoices() {
 	
 }
 
-public static void flooractions(int choice, int plocation) {
+public static void flooractions(int choice, int plocation,HashMap<String, Boolean> pbackpack) {
 	
 	switch(plocation) {
 	case 0: 
 		//case for basement
 		if(choice == 0) {
-			JOptionPane.showMessageDialog(null,"You found the key!");
+			if(pbackpack.get("Attic Key") == false) {
+				pbackpack.put("Attic Key", true);
+				JOptionPane.showMessageDialog(null,"You found the key!");				
+			}
+			else {
+				
+				JOptionPane.showMessageDialog(null, "The Chest has already ben searched.");
+				
+			}
 		}
 		else if(choice == 1) {
 			JOptionPane.showMessageDialog(null,"You see a dead body, inform Logan Paul");
@@ -106,7 +121,13 @@ public static void flooractions(int choice, int plocation) {
 	case 3:
 		//case for kitchen
 		if(choice == 0) {
-			JOptionPane.showMessageDialog(null, "You find some delicious soul food.");
+			if(pbackpack.get("Soul Food") == false) {
+				pbackpack.put("Soul Food", true);
+			JOptionPane.showMessageDialog(null, "You find some delicious soul food.");			
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "You already searched this");
+			}
 		}
 		else if(choice == 1) {
 			JOptionPane.showMessageDialog(null, "Glasses and dishes start flying around the room!");
@@ -145,10 +166,23 @@ public static void flooractions(int choice, int plocation) {
 	case 6:
 		//case for Master Bedroom
 		if(choice == 0) {
-			JOptionPane.showMessageDialog(null, "You find a cursed Hope Diamond! Maybe GameStop will give you 3 dollars for it.");
+			if(pbackpack.get("Cursed Hope Diamond") == false) {
+				pbackpack.put("Cursed Hope Diamond", true);
+				JOptionPane.showMessageDialog(null, "You find a cursed Hope Diamond! Maybe GameStop will give you 3 dollars for it.");
+			}
+			else {
+				
+				JOptionPane.showMessageDialog(null, "You already searched this");
+			}
 		}
 		else if(choice == 1) {
-			JOptionPane.showMessageDialog(null, "You rub the lamp and a genie pops out. He begins to sing 'Ocean Man'.");
+			if(pbackpack.get("Intricate Oil Lamp") == false) {
+				pbackpack.put("Intricate Oil Lamp", true);
+				JOptionPane.showMessageDialog(null, "You rub the lamp and a genie pops out. He begins to sing 'Ocean Man'.");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "You already searched this");
+			}
 		}
 		else if(choice == 2) {
 		// go back to elevator
@@ -161,7 +195,13 @@ public static void flooractions(int choice, int plocation) {
 			JOptionPane.showMessageDialog(null, "You see a bloody face looking back at you.");
 		}
 		else if(choice == 1) {
-			JOptionPane.showMessageDialog(null, "You hear someone drop the soap in the shower, but there is no one there...");
+			if(pbackpack.get("Soap") == false) {
+				pbackpack.put("Soap", true);
+				JOptionPane.showMessageDialog(null, "You hear someone drop the soap in the shower, but there is no one there...");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "You already searched this");
+			}
 		}
 		else if(choice == 2) {
 		//go back to elevator
@@ -171,7 +211,12 @@ public static void flooractions(int choice, int plocation) {
 	case 8:
 		//case for playroom
 		if(choice == 0) {
+			if(pbackpack.get("Limited Edition Gundam") == false) {
 			JOptionPane.showMessageDialog(null, "You find a limited edition Gundam!");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "You already searched this");
+			}
 		}
 		else if(choice == 1) {
 		//back to elevator
@@ -181,7 +226,13 @@ public static void flooractions(int choice, int plocation) {
 		//case for attic
 		if(choice == 0) {
 		//key for front door
-			JOptionPane.showMessageDialog(null, "You found another key.");
+			if(pbackpack.get("Front Door Key") == false) {
+				pbackpack.put("Front Door Key",true);
+				JOptionPane.showMessageDialog(null, "You found another key.");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "You already searched this");
+			}
 		}
 		else if(choice == 1) {
 		//go back to elevator
