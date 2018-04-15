@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package towerpack;
 
 import javax.swing.ImageIcon;
@@ -43,6 +38,298 @@ private static String receivefloor(int loc) {
 	
 }
 
+public static Object[] elevatorchoices() {
+	
+	Object[] floors = new String[10];
+	for(int x = 0; x <= 10; x++) {
+		
+		floors[x] = receivefloor(x);
+		
+	}
+	
+	return floors;
+	
+}
+
+public static void flooractions(int choice) {
+	
+	switch(location) {
+	
+	case 0: 
+		//case for basement
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null,"You found the key!");
+			
+		}
+		else if(choice == 1) {
+			
+			JOptionPane.showMessageDialog(null,"You see a dead body, inform Logan Paul");
+			
+		}
+		else if(choice == 2) {
+			
+			
+			
+		}
+	
+			break;
+		
+	case 1:	
+		//case for front door
+		if(choice == 0) {
+			// Key needed to open front door
+			
+		}
+		else if(choice == 1) {
+			
+			//go back to elevator
+			
+		}
+		
+			break;
+	
+	case 2: 
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null, "They light up by themselves and death shadows appear.");
+			
+		}
+		else if(choice == 1) {
+			//back to elevator
+			JOptionPane.showMessageDialog(null, "");
+			
+		}
+		
+			break;
+			
+	case 3:
+		//case for kitchen
+		if(choice == 0) {
+
+			JOptionPane.showMessageDialog(null, "You find some delicious soul food.");
+			
+		}
+		else if(choice == 1) {
+			
+			JOptionPane.showMessageDialog(null, "Glasses and dishes start flying around the room!");
+			
+		}
+		else if(choice == 2) {
+			
+			// go back to elevator
+			
+		}
+		
+			break;
+			
+	case 4: 
+		//case for bedroom 1
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null, "The chair begins to rock on its own!");
+			
+		}
+		else if(choice == 1) {
+			
+			JOptionPane.showMessageDialog(null, "You see a child outside on a swing.");
+			
+		}
+		else if(choice == 2) {
+			
+			//back to elevator
+			
+		}
+	
+			break;
+			
+	case 5:
+		//case for bedroom 2
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null, "The dolls start having a frat party, and no, you are not cool enough to be invited.");
+			
+		}
+		else if(choice == 1) {
+			
+			JOptionPane.showMessageDialog(null, "A ghost flies out and goes right through you. You might have to go to therapy for that.");
+			
+		}
+		else if(choice == 2) {
+			
+			// back to elevator
+			
+		}
+		
+			break;
+	
+	case 6:
+		//case for Master Bedroom
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null, "You find a cursed Hope Diamond! Maybe GameStop will give you 3 dollars for it.");
+			
+		}
+		else if(choice == 1) {
+			
+			JOptionPane.showMessageDialog(null, "You rub the lamp and a genie pops out. He beggins to sing 'Ocean Man'.");
+			
+		}
+		else if(choice == 2) {
+			
+			// go back to elevator
+			
+		}
+		
+			break;
+	
+	case 7:
+		//case for bathroom
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null, "You see a bloody face looking back at you.");
+			
+		}
+		else if(choice ==1) {
+			
+			JOptionPane.showMessageDialog(null, "You hear someone drop the soap in the shower, but there is no one there...");
+			
+		}
+		else if(choice == 2) {
+			
+			//go back to elevator
+		}
+		
+			break;
+			
+	case 8:
+		//case for playroom
+		if(choice == 0) {
+			
+			JOptionPane.showMessageDialog(null, "You find a limited edition gundam!");
+			
+		}
+		else if(choice == 1) {
+			
+			//back to elevator
+			
+		}
+		
+			break;
+			
+	case 9:
+		//case for attic
+		if(choice == 0) {
+			//key for front door
+			JOptionPane.showMessageDialog(null, "You found another key.");
+			
+		}
+		else if(choice == 1) {
+			
+			//go back to elevator
+			
+		}
+		
+	
+	}
+	
+}
+
+public static int optionsquestion(Object[] options) {
+	
+	int n = JOptionPane.showOptionDialog(null,
+		    "What would you like to do?",
+		    "Choose",
+		    JOptionPane.YES_NO_CANCEL_OPTION,
+		    JOptionPane.QUESTION_MESSAGE,
+		    null,
+		    options,options[0]);
+			return n;
+	
+}
+
+public static int clocationquestion() {
+	
+	Object[] options = new Object[4];
+	int choice;
+	
+	switch (location) {
+	
+	case 0: 
+		options[0] = "Explore Chest";
+		options[1] = "Explore BoilerRoom";
+		options[2] = "Go back to Elevator";
+		
+		break;
+		
+	case 1: 
+		options[0] = "Try to open front door";
+		options[1] = "Go back to Elevator";
+		
+		break;
+	
+	case 2: 
+		options[0] = "Explore Candelabra";
+		options[1] = "Go back to Elevator";
+		
+		break;
+		
+	case 3: 
+		options[0] = "Explore Refrigerator";
+		options[1] = "Explore Cabinet";
+		options[2] = "Go back to Elevator";
+		
+		break;
+		
+	case 4: 
+		options[0] = "Explore Rocking Chair";
+		options[1] = "Explore Window";
+		options[2] = " Go back to Elevator";
+		
+		break;
+	case 5:
+		options[0] = "Explore Doll House";
+		options[1] = "Explore Dresser";
+		options[2] = "Go back to Elevator";
+		
+		break;
+		
+	case 6: 
+		options[0] = "Explore Jewelry Box";
+		options[1] = "Explore Intricate Oil Lamp";
+		options[2] = "Go back to Elevator";
+		
+		break;
+		
+	case 7:
+		options[0] = "Explore Mirror";
+		options[1] = "Explore Shower";
+		options[2] = "Go back to Elevator";
+		
+		break;
+		
+	case 8:
+		options[0] = "Explore Toy Box";
+		options[1] = "Go back to Elevator";
+		
+		break;
+		
+	case 9:
+		options[0] = "Explore Chest";
+		options[1] = "Go back to Elevator";
+		
+		break;
+		
+	case 10:
+		options = elevatorchoices();
+		
+		break;
+	}
+	
+	choice = optionsquestion(options);
+	return choice;
+}
+
 public static ImageIcon picture(int x) {
 	
 	ImageIcon[] floorpicture = new ImageIcon[11];
@@ -74,11 +361,11 @@ public static void intro() {
 	
 }
 
-public static void currentlocation() {
+public static void currentlocation(int x) {
 	
 	switch (location) {
 	
-	case 0: 
+	case 0: if()
 	
 	}
 	
