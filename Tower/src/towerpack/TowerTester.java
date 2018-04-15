@@ -5,10 +5,7 @@
  */
 package towerpack;
 
-//import static towerpack.towermain.intro;
-//import static towerpack.towermain.startWalking;
-
-import javax.swing.JOptionPane;
+import java.util.HashMap;
 
 /**
  *
@@ -21,8 +18,9 @@ public class TowerTester {
      */
     public static void main(String[] args) {
         // TODO code application logic here
- 
     	
+    	HashMap<String, Boolean> init = new HashMap<String, Boolean>();
+    	towermain Player = new towermain("", 0, init);
     
     }
     

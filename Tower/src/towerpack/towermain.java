@@ -11,10 +11,19 @@ import javax.swing.JOptionPane;
 public class towermain {
 
 
+private static int plocation;
+private static String pname;
+private static HashMap<String, Boolean> pBackpack;
+
+
 public towermain(String pname, int plocation, HashMap<String, Boolean> pBackpack) {
 	
-	pname = initializename();
+	towermain.pname = pname;
+	pname = JOptionPane.showInputDialog(null, "What is your name?");
+	JOptionPane.showMessageDialog(null, "Welcome " + pname + " to the Tower Of Terror!");
+	towermain.plocation = plocation;
 	plocation = 1;
+	towermain.pBackpack = pBackpack;
 	pBackpack = initializeBackpack();
 	
 }
@@ -37,10 +46,9 @@ public static HashMap<String, Boolean> initializeBackpack() {
 	}
 	
 	return iBackpack;
-	
 }
 
-private static String receivefloor(int loc) {
+private static String receivefloor() {
 	
 	String[] floor = new String[11];
 	floor[0] = "Basement";
@@ -55,61 +63,50 @@ private static String receivefloor(int loc) {
     floor[9] = "Attic";
     floor[10] = "Elevator";
     
-    return floor[loc];
-	
-}
-
-public static void backback() {
-	
-	
-	
+    return floor[plocation];
 }
 
 public static Object[] elevatorchoices() {
 	
 	Object[] floors = new String[10];
 	for(int x = 0; x <= 10; x++) {
-		floors[x] = receivefloor(x);
+		floors[x] = receivefloor();
 	}
 	return floors;
-	
 }
 
-public static void flooractions(int choice, int plocation,HashMap<String, Boolean> pbackpack) {
+public static void flooractions(int choice) {
 	
 	switch(plocation) {
 	case 0: 
 		//case for basement
 		if(choice == 0) {
-			if(pbackpack.get("Attic Key") == false) {
-				pbackpack.put("Attic Key", true);
+			if(pBackpack.get("Attic Key") == false) {
+				pBackpack.put("Attic Key", true);
 				JOptionPane.showMessageDialog(null,"You found the key!");				
 			}
 			else {
-				
 				JOptionPane.showMessageDialog(null, "The Chest has already ben searched.");
-				
 			}
 		}
 		else if(choice == 1) {
 			JOptionPane.showMessageDialog(null,"You see a dead body, inform Logan Paul");
 		}
 		else if(choice == 2) {
-			
+			plocation = 10;
 		}
 			break;
 	case 1:	
 		//case for front door
 		if(choice == 0) {
-			if(pbackpack.get("Front Door Key") == true) {
+			if(pBackpack.get("Front Door Key") == true) {
 				JOptionPane.showMessageDialog(null,"Congratulations, you have opened the front door and escaped! Game Over!");
 			}
 		// Key needed to open front door
 			
 		}
 		else if(choice == 1) {
-		//go back to elevator
-			
+			plocation = 10;
 		}
 			break;
 	case 2: 
@@ -117,15 +114,14 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			JOptionPane.showMessageDialog(null, "They light up by themselves and death shadows appear.");
 		}
 		else if(choice == 1) {
-		//back to elevator
-			JOptionPane.showMessageDialog(null, "");
+			plocation = 10;
 		}
 			break;
 	case 3:
 		//case for kitchen
 		if(choice == 0) {
-			if(pbackpack.get("Soul Food") == false) {
-				pbackpack.put("Soul Food", true);
+			if(pBackpack.get("Soul Food") == false) {
+				pBackpack.put("Soul Food", true);
 			JOptionPane.showMessageDialog(null, "You find some delicious soul food.");			
 			}
 			else {
@@ -136,8 +132,7 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			JOptionPane.showMessageDialog(null, "Glasses and dishes start flying around the room!");
 		}
 		else if(choice == 2) {
-		// go back to elevator
-			
+			plocation = 10;
 		}
 			break;
 	case 4: 
@@ -149,8 +144,7 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			JOptionPane.showMessageDialog(null, "You see a child outside on a swing.");
 		}
 		else if(choice == 2) {
-		//back to elevator
-			
+			plocation = 10;
 		}
 			break;
 	case 5:
@@ -162,25 +156,23 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			JOptionPane.showMessageDialog(null, "A ghost flies out and goes right through you. You might have to go to therapy for that.");
 		}
 		else if(choice == 2) {
-		// back to elevator
-			
+			plocation = 10;
 		}
 			break;
 	case 6:
 		//case for Master Bedroom
 		if(choice == 0) {
-			if(pbackpack.get("Cursed Hope Diamond") == false) {
-				pbackpack.put("Cursed Hope Diamond", true);
+			if(pBackpack.get("Cursed Hope Diamond") == false) {
+				pBackpack.put("Cursed Hope Diamond", true);
 				JOptionPane.showMessageDialog(null, "You find a cursed Hope Diamond! Maybe GameStop will give you 3 dollars for it.");
 			}
 			else {
-				
 				JOptionPane.showMessageDialog(null, "You already searched this");
 			}
 		}
 		else if(choice == 1) {
-			if(pbackpack.get("Intricate Oil Lamp") == false) {
-				pbackpack.put("Intricate Oil Lamp", true);
+			if(pBackpack.get("Intricate Oil Lamp") == false) {
+				pBackpack.put("Intricate Oil Lamp", true);
 				JOptionPane.showMessageDialog(null, "You rub the lamp and a genie pops out. He begins to sing 'Ocean Man'.");
 			}
 			else {
@@ -188,8 +180,7 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			}
 		}
 		else if(choice == 2) {
-		// go back to elevator
-			
+			plocation = 10;
 		}
 			break;
 	case 7:
@@ -198,8 +189,8 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			JOptionPane.showMessageDialog(null, "You see a bloody face looking back at you.");
 		}
 		else if(choice == 1) {
-			if(pbackpack.get("Soap") == false) {
-				pbackpack.put("Soap", true);
+			if(pBackpack.get("Soap") == false) {
+				pBackpack.put("Soap", true);
 				JOptionPane.showMessageDialog(null, "You hear someone drop the soap in the shower, but there is no one there...");
 			}
 			else {
@@ -207,14 +198,13 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			}
 		}
 		else if(choice == 2) {
-		//go back to elevator
-			
+			plocation = 10;
 		}
 			break;
 	case 8:
 		//case for playroom
 		if(choice == 0) {
-			if(pbackpack.get("Limited Edition Gundam") == false) {
+			if(pBackpack.get("Limited Edition Gundam") == false) {
 			JOptionPane.showMessageDialog(null, "You find a limited edition Gundam!");
 			}
 			else {
@@ -222,15 +212,15 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			}
 		}
 		else if(choice == 1) {
-		//back to elevator
+			plocation = 10;
 		}
 			break;
 	case 9:
 		//case for attic
 		if(choice == 0) {
 		//key for front door
-			if(pbackpack.get("Front Door Key") == false) {
-				pbackpack.put("Front Door Key",true);
+			if(pBackpack.get("Front Door Key") == false) {
+				pBackpack.put("Front Door Key",true);
 				JOptionPane.showMessageDialog(null, "You found another key.");
 			}
 			else {
@@ -238,26 +228,35 @@ public static void flooractions(int choice, int plocation,HashMap<String, Boolea
 			}
 		}
 		else if(choice == 1) {
-		//go back to elevator
-			
+			plocation = 10;
 		}
+			break;
+	case 10:
+		if(choice == 9) {
+			if(pBackpack.get("Attic Key") == false) {
+				JOptionPane.showMessageDialog(null, "The attic door is locked. Please try a different floor.");
+				plocation = 10;
+				break;
+			}
+		}
+		plocation = choice;
+		break;
 	}
 }
 
-public static int optionsquestion(Object[] options, int plocation) {
+public static int optionsquestion(Object[] options) {
 	
 	int n = JOptionPane.showOptionDialog(null,
-		    "What would you like to do?",
+		    pname + ", What would you like to do?",
 		    "Choose",
 		    JOptionPane.YES_NO_CANCEL_OPTION,
 		    JOptionPane.QUESTION_MESSAGE,
 		    null,
 		    options,options[options.length - 1]);
-			return n;
-	
+	return n;
 }
 
-public static int clocationquestion(int plocation) {
+public static int clocationquestion() {
 	
 	Object[] options = new Object[4];
 	int choice;
@@ -303,7 +302,7 @@ public static int clocationquestion(int plocation) {
 		break;
 	case 10:
 		options = elevatorchoices();
-		choice = optionsquestion(options, plocation);
+		choice = optionsquestion(options);
 		return choice;
 	}
 	
@@ -324,11 +323,11 @@ public static int clocationquestion(int plocation) {
 		roptions[numoptions - 1] = options[3];
 	}
 	
-	choice = optionsquestion(roptions, plocation);
+	choice = optionsquestion(roptions);
 	return choice;
 }
 
-public static ImageIcon picture(int x) {
+public static ImageIcon picture() {
 	
 	ImageIcon[] floorpicture = new ImageIcon[11];
 	
@@ -345,90 +344,14 @@ public static ImageIcon picture(int x) {
     floorpicture[1] = new ImageIcon("FrontDoor.jpg");
     floorpicture[10] = new ImageIcon("Elevator.jpg");
     
-    return floorpicture[x];
+    return floorpicture[plocation];
 	
 }
 
-public static String initializename() {
-	
-	  //Asking for user's name and welcoming the user.
-    String pname = JOptionPane.showInputDialog(null, "What is your name?");
-    JOptionPane.showMessageDialog(null, "Welcome " + pname + " to the Tower Of Terror!");
-    return pname;
-	
+public static void clocationmessage () {
+	JOptionPane.showMessageDialog(null, pname + ", You are now in " + receivefloor() + ".",null,JOptionPane.INFORMATION_MESSAGE,picture());
 }
 
-public static void currentlocation(int x, int plocation) {
-	
-	switch (plocation) {
-	
-	case 0: if()
-	
-	}
-	
-}
-
-public static void clocationmessage (int plocation) {
-	
-	JOptionPane.showMessageDialog(null, "You are now in " + receivefloor(plocation) + ".",null,JOptionPane.INFORMATION_MESSAGE,picture(location));
-	
-}
-
-
-public static void startWalking()
-{
-    // Create Arrays for the floors and Items in the backpack.
-    
-    String item[] = new String[5];
-    
-    item[0] = "Basment Key";
-    item[1] = "Attic Key";
-    
-    String leave[] = new String[2];
-    
-    leave[0] = "Leave";
-    leave[1] = "Elevator";
-    boolean gameOn = true;
-    
-    while (gameOn) {
-    
-        int move1 = JOptionPane.showOptionDialog(null, name + " you are now in the Front Door.\nWould you like to leave or go into the elevator? ",null, 
-                JOptionPane.WARNING_MESSAGE,0,null,leave,null);
-        
-                System.out.println(move1);
-        
-        if(move1 == 1){ 
-        elevator = true;
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "The door is locked you need the key to escape.");
-        }
-    while (elevator == true) {
-        
-        
-            if(true){
-                JOptionPane.showMessageDialog(null, "You are now in the Elevator.",null,JOptionPane.INFORMATION_MESSAGE,vator);
-//                move1 = JOptionPane.showInputDialog(null, name + " Which floor would you like to take the elevator to??\nBasement?\nDining Room?\nKitchen?\nBedroom1?\nBedroom2?\nMaster Bedroom?\nBathroom?\nAttic\nFront Door?");
-                 System.out.println(move1);
-                 move1 = JOptionPane.showOptionDialog(null, "Where Could you like to go?", "Floors",
-                 JOptionPane.WARNING_MESSAGE, JOptionPane.PLAIN_MESSAGE, null, floor," ");
-                 
-            } 
-            elevator = false;
-    
-//    while(location0.equals(floor[1]))
-//    {
-//
-//           
-//                    
-//                    
-//                    
-//                  
-//    }
-   }
-  } 
- }
 }
 
 
