@@ -5,8 +5,10 @@
  */
 package towerpack;
 
-import static towerpack.towermain.intro;
-import static towerpack.towermain.startWalking;
+//import static towerpack.towermain.intro;
+//import static towerpack.towermain.startWalking;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +22,7 @@ public class TowerTester {
     public static void main(String[] args) {
         // TODO code application logic here
  
-        intro();
-        startWalking();
+    	
     
     }
     
